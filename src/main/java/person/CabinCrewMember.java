@@ -13,5 +13,7 @@ public class CabinCrewMember extends Person{
     public Rank getRank() {
         return rank;
     }
-    
+     public String deliverMessage(){
+        return "Fasten your seat belts";
+     }
 }
