@@ -29,7 +29,7 @@ public class FlightTest {
 
     @Test
     public void PassengerCount(){
-        assertEquals(4, flight.passengerCount());
+        assertEquals(5, flight.passengerCount());
     }
     @Test
     public void canHaveFlightNumber(){
