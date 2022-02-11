@@ -5,6 +5,7 @@ import person.Passenger;
 import person.Plane;
 import person.Rank;
 import pilot.Pilot;
+import person.Plane;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Flight {
         pilot = new Pilot("Bilal", Rank.CAPTION, "KER34");
         this.cabinCrewMembers = new ArrayList<>();
         this.passengers = new ArrayList<>();
-        this.plane = plane;
+
         this.flightNumber = flightNumber;
         this.destination = destination;
         this.departureAirport = departureAirport;
@@ -64,4 +65,10 @@ public class Flight {
     }
 
 //    Cannot book passengers
+    public String CannotBookPassenger(){
+       if(passengerCount() > plane.getPlaneCapacity()){
+           return "Cannot Book Passengers";
+        }
+       return null;
+    }
 }

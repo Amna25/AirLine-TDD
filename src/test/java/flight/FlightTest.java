@@ -11,17 +11,25 @@ import static org.junit.Assert.assertEquals;
 public class FlightTest {
     Flight flight;
     Passenger passenger;
+    Passenger passenger1;
+    Passenger passenger2;
+    Passenger passenger3;
+    Passenger passenger4;
+
     @Before
     public void before(){
         flight = new Flight( Plane.AIRBUS, "FRE45", "Edinburgh"
                 , "Turkey", "14:30");
         passenger = new Passenger("Ron", 2);
-
+        flight.bookPassenger(passenger1);
+        flight.bookPassenger(passenger2);
+        flight.bookPassenger(passenger3);
+        flight.bookPassenger(passenger4);
     }
 
     @Test
-    public void PassengerStartEmpty(){
-        assertEquals(0, flight.passengerCount());
+    public void PassengerCount(){
+        assertEquals(4, flight.passengerCount());
     }
     @Test
     public void canHaveFlightNumber(){
@@ -44,11 +52,17 @@ public class FlightTest {
     }
     @Test
     public void canGetNumberOfSeatsSeats(){
-        assertEquals(544, flight.getNumberOfSeats());
+        assertEquals(3, flight.getNumberOfSeats());
     }
     @Test
     public void canBookPassenger(){
         flight.bookPassenger(passenger);
-        assertEquals(1, flight.passengerCount());
+        assertEquals(5, flight.passengerCount());
+    }
+
+    @Test
+    public void CannotBookPassenger(){
+        assertEquals("Cannot Book Passengers", flight.CannotBookPassenger());
+
     }
 }
