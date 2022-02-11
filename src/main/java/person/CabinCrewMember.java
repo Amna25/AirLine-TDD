@@ -13,6 +13,11 @@ public class CabinCrewMember extends Person{
     public Rank getRank() {
         return rank;
     }
+
+    public String rankValue(){
+        return this.rank.getRankValue();
+    }
+
      public String deliverMessage(){
         return "Fasten your seat belts";
      }

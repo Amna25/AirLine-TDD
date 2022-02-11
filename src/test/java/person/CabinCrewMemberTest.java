@@ -29,5 +29,10 @@ public class CabinCrewMemberTest {
         assertEquals("Fasten your seat belts", cabinCrewMember.deliverMessage());
     }
 
+    @Test
+    public void canGetRankValue(){
+        assertEquals("firstOfficer", cabinCrewMember.rankValue());
+    }
+
 
 }
