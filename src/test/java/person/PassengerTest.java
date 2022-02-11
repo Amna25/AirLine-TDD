@@ -17,5 +17,4 @@ public class PassengerTest {
         assertEquals(3, passenger.getNumberOfBags());
     }
 
-
 }
