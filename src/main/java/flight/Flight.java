@@ -50,4 +50,9 @@ public class Flight {
     public String getDepartureTime() {
         return departureTime;
     }
+
+
+    public int getNumberOfSeats() {
+        return plane.getPlaneCapacity();
+    }
 }
