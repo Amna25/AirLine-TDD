@@ -26,7 +26,7 @@ public class Flight {
         pilot = new Pilot("Bilal", Rank.CAPTION, "KER34");
         this.cabinCrewMembers = new ArrayList<>();
         this.passengers = new ArrayList<>();
-
+        this.plane = plane;
         this.flightNumber = flightNumber;
         this.destination = destination;
         this.departureAirport = departureAirport;

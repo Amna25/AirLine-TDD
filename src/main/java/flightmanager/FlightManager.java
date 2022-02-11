@@ -13,7 +13,7 @@ public class FlightManager {
         this.plane = plane;
         this.passenger =new ArrayList<>();
     }
-    public int getBaggageReservedForEachPassenger(){
-        return (plane.getTotalWeight()/2) *1;
+    public int getBaggageReservedForPassengers(){
+        return (plane.getTotalWeight()/2);
     }
 }
