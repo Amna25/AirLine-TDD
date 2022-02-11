@@ -36,7 +36,9 @@ public class FlightManager {
     }
 
 //    calculate how much overall weight reserved for baggage remains for a flight
-    
+    public int baggageWeightRemainForFlight(){
+        return getTotalReservedBaggage() - getEachPassengerBaggageWeight();
+    }
 
 
 }

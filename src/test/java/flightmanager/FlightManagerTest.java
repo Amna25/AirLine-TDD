@@ -51,4 +51,9 @@ public class FlightManagerTest {
     public void getTotalReservedBaggage(){
         assertEquals(558, flightManager.getTotalReservedBaggage());
     }
+
+    @Test
+    public void getRemainingWeight(){
+        assertEquals(465, flightManager.baggageWeightRemainForFlight());
+    }
 }
