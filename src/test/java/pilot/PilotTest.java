@@ -20,6 +20,10 @@ public class PilotTest {
     public void canHaveRank(){
         assertEquals(Rank.CAPTION, pilot.getRank());
     }
+    @Test
+    public void canHaveLicenceNumber(){
+        assertEquals("KER34", pilot.getLicenceNumber());
+    }
 
 
 }
