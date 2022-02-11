@@ -34,4 +34,20 @@ public class Flight {
     public int passengerCount(){
         return this.passengers.size();
     }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public String findDestination() {
+        return destination;
+    }
+
+    public String getDepartureAirport() {
+        return departureAirport;
+    }
+
+    public String getDepartureTime() {
+        return departureTime;
+    }
 }
