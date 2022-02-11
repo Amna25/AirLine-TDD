@@ -2,6 +2,7 @@ package flight;
 
 import org.junit.Before;
 import org.junit.Test;
+import person.Passenger;
 import person.Plane;
 
 import static org.junit.Assert.assertEquals;
@@ -9,10 +10,13 @@ import static org.junit.Assert.assertEquals;
 
 public class FlightTest {
     Flight flight;
+    Passenger passenger;
     @Before
     public void before(){
         flight = new Flight( Plane.AIRBUS, "FRE45", "Edinburgh"
                 , "Turkey", "14:30");
+        passenger = new Passenger("Ron", 2);
+
     }
 
     @Test
@@ -41,5 +45,10 @@ public class FlightTest {
     @Test
     public void canGetNumberOfSeatsSeats(){
         assertEquals(544, flight.getNumberOfSeats());
+    }
+    @Test
+    public void canBookPassenger(){
+        flight.bookPassenger(passenger);
+        assertEquals(1, flight.passengerCount());
     }
 }

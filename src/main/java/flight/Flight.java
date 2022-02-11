@@ -51,8 +51,17 @@ public class Flight {
         return departureTime;
     }
 
-
+// check number of seats in one plane
     public int getNumberOfSeats() {
         return plane.getPlaneCapacity();
     }
+
+//  add passenger if there is any remaining seat
+    public void bookPassenger(Passenger passenger){
+        if(plane.getPlaneCapacity() > 0){
+            this.passengers.add(passenger);
+        }
+    }
+
+//    Cannot book passengers
 }
