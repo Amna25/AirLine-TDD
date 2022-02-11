@@ -14,4 +14,11 @@ public class Pilot extends CabinCrewMember {
     public String getLicenceNumber() {
         return licenceNumber;
     }
+
+    public String isValidLicence(){
+        if(this.licenceNumber != null){
+            return "Can fly plane";
+        }
+        return "Can't fly plane";
+    }
 }
