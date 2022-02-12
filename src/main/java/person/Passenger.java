@@ -5,20 +5,27 @@ import java.util.Random;
 public class Passenger extends Person {
 
     private int numberOfBags;
-    private int seatNumber;
+    private String flightNo = null;
 
 
-    public Passenger(String name, int numberOfBags, int seatNumber){
+
+    public Passenger(String name, int numberOfBags){
         super(name);
         this.numberOfBags = numberOfBags;
-        this.seatNumber = (int)(Math.random() * 50 + 1);
+        Random rand = new Random();
+//        this.seatNumber = rand.nextInt(10) + 1;
+//        Random seatNumber = (int)(Math.random() * 50);
     }
 
     public int getNumberOfBags() {
         return numberOfBags;
     }
-//    generate random seat number
-    public int getSeatNumber(){
-        return this.seatNumber;
+
+    public String getFlightNo(){
+        return flightNo;
+    }
+
+    public void setFlightNo(String flightNo) {
+        this.flightNo = flightNo;
     }
 }

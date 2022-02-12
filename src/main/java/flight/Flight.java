@@ -18,6 +18,7 @@ public class Flight {
     private String destination;
     private String departureAirport;
     protected Date departureTime;
+    private String flightNo;
 
 
     public Flight(Plane plane, String flightNumber, String
@@ -30,6 +31,7 @@ public class Flight {
         this.destination = destination;
         this.departureAirport = departureAirport;
         this.departureTime = new Date(2022,02,14);
+        this.flightNo = flightNo;
 
     }
     public int passengerCount(){
@@ -61,6 +63,7 @@ public class Flight {
     public void bookPassenger(Passenger passenger){
         if(plane.getPlaneCapacity() > passengerCount()){
             this.passengers.add(passenger);
+            passenger.setFlightNo(flightNo);
         }
     }
 
