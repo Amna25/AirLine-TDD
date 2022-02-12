@@ -19,6 +19,7 @@ public class Flight {
     private String departureAirport;
     protected Date departureTime;
 
+
     public Flight(Plane plane, String flightNumber, String
             destination, String departureAirport){
         pilot = new Pilot("Bilal", Rank.CAPTION, "KER34");
@@ -29,6 +30,7 @@ public class Flight {
         this.destination = destination;
         this.departureAirport = departureAirport;
         this.departureTime = new Date(2022,02,14);
+
     }
     public int passengerCount(){
         return this.passengers.size();
@@ -57,14 +59,14 @@ public class Flight {
 
 //  add passenger if there is any remaining seat
     public void bookPassenger(Passenger passenger){
-        if(plane.getPlaneCapacity() > 0){
+        if(plane.getPlaneCapacity() > passengerCount()){
             this.passengers.add(passenger);
         }
     }
 
 //    Cannot book passengers
     public String CannotBookPassenger(){
-       if(passengerCount() > plane.getPlaneCapacity()){
+       if( plane.getPlaneCapacity() < passengerCount() ){
            return "Cannot Book Passengers";
         }
        return null;
