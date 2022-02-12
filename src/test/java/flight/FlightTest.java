@@ -5,6 +5,8 @@ import org.junit.Test;
 import person.Passenger;
 import person.Plane;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -19,7 +21,7 @@ public class FlightTest {
     @Before
     public void before(){
         flight = new Flight( Plane.AIRBUS, "FRE45", "Edinburgh"
-                , "Turkey", "14:30");
+                , "Turkey");
         passenger = new Passenger("Ron", 2);
         flight.bookPassenger(passenger1);
         flight.bookPassenger(passenger2);
@@ -29,7 +31,7 @@ public class FlightTest {
 
     @Test
     public void PassengerCount(){
-        assertEquals(5, flight.passengerCount());
+        assertEquals(4, flight.passengerCount());
     }
     @Test
     public void canHaveFlightNumber(){
@@ -48,7 +50,7 @@ public class FlightTest {
 
     @Test
     public void hasDepartureTime(){
-        assertEquals("14:30", flight.getDepartureTime());
+        assertEquals(new Date(2022,02,14), flight.getDepartureTime());
     }
     @Test
     public void canGetNumberOfSeatsSeats(){

@@ -5,11 +5,9 @@ import person.Passenger;
 import person.Plane;
 import person.Rank;
 import pilot.Pilot;
-import person.Plane;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Date;
 
 public class Flight {
     private Pilot pilot;
@@ -19,10 +17,10 @@ public class Flight {
     private String flightNumber;
     private String destination;
     private String departureAirport;
-    private String departureTime;
+    protected Date departureTime;
 
     public Flight(Plane plane, String flightNumber, String
-            destination, String departureAirport, String departureTime){
+            destination, String departureAirport){
         pilot = new Pilot("Bilal", Rank.CAPTION, "KER34");
         this.cabinCrewMembers = new ArrayList<>();
         this.passengers = new ArrayList<>();
@@ -30,7 +28,7 @@ public class Flight {
         this.flightNumber = flightNumber;
         this.destination = destination;
         this.departureAirport = departureAirport;
-        this.departureTime = departureTime;
+        this.departureTime = new Date(2022,02,14);
     }
     public int passengerCount(){
         return this.passengers.size();
@@ -48,7 +46,7 @@ public class Flight {
         return departureAirport;
     }
 
-    public String getDepartureTime() {
+    public Date getDepartureTime() {
         return departureTime;
     }
 
