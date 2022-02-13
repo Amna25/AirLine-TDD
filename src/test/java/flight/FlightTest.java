@@ -7,6 +7,7 @@ import person.Passenger;
 import person.Plane;
 import person.Rank;
 
+import javax.swing.plaf.PanelUI;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class FlightTest {
         flight.bookPassenger(passenger1);
         flight.bookPassenger(passenger2);
         flight.bookPassenger(passenger3);
-        flight.bookPassenger(passenger4);
+        flight.bookPassenger(passenger4 );
 
     }
 
@@ -61,11 +62,18 @@ public class FlightTest {
         assertEquals(3, flight.getNumberOfSeats());
     }
 
+//  test to get unassigned seats
+    @Test
+    public void canGetUnassignedSeats(){
+        assertEquals(3, flight.getUnassignedSeats().size());
+    }
+    
     @Test
     public void canBookPassenger(){
-        flight.bookPassenger(passenger);
+//        flight.bookPassenger(passenger);
         assertEquals(3, flight.passengerCount());
     }
+
 
     @Test
     public void CannotBookPassenger(){

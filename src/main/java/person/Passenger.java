@@ -1,6 +1,6 @@
 package person;
 
-import java.util.Random;
+
 
 public class Passenger extends Person {
 
@@ -13,8 +13,6 @@ public class Passenger extends Person {
     public Passenger(String name, int numberOfBags){
         super(name);
         this.numberOfBags = numberOfBags;
-        Random rand = new Random();
-      this.seatNumber = rand.nextInt(10) + 1;
 
     }
 
@@ -23,6 +21,7 @@ public class Passenger extends Person {
     }
 
     public String getFlightNo(){
+
         return flightNo;
     }
 

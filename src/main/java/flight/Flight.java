@@ -8,6 +8,10 @@ import pilot.Pilot;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Flight {
     private Pilot pilot;
@@ -18,7 +22,7 @@ public class Flight {
     private String destination;
     private String departureAirport;
     protected Date departureTime;
-
+    private List<Integer> unassignedSeats;
 
 
     public Flight(Plane plane, String flightNo, String
@@ -33,6 +37,8 @@ public class Flight {
         this.destination = destination;
         this.departureAirport = departureAirport;
         this.departureTime = new Date(2022,02,14);
+//        Create an array of unassigned seats from number 1 to max capacity of plane
+        this.unassignedSeats = IntStream.rangeClosed(1, plane.getPlaneCapacity()).boxed().collect(Collectors.toList());
 
 
     }
@@ -56,6 +62,11 @@ public class Flight {
         return departureTime;
     }
 
+//    check unassigned seats
+    public List<Integer> getUnassignedSeats(){
+        return unassignedSeats;
+    }
+
 // check number of seats in one plane
     public int getNumberOfSeats() {
         return plane.getPlaneCapacity();
@@ -65,6 +76,9 @@ public class Flight {
     public void bookPassenger(Passenger passenger){
         if(plane.getPlaneCapacity() > passengerCount()){
             this.passengers.add(passenger);
+            passenger.setFlightNo(flightNo);
+            assignSeats(passenger);
+
         }
     }
 
@@ -76,7 +90,7 @@ public class Flight {
        return null;
     }
 
-//    check flight ateendence size
+//  Give Message To Passengers
     public String CabinCrewRelayMessage(){
         String result;
         if(this.cabinCrewMembers.size() > 1){
@@ -87,15 +101,16 @@ public class Flight {
         return result;
     }
 
-//    seat Reserved for each passenger
-//    public int seatReservedForPassenger(Passenger passenger){
-//        int passengerSeat = 1;
-//        for(Passenger eachPassenger : passengers){
-//            if(eachPassenger.getName().equals(passenger.getName())) {
-//                passengerSeat = eachPassenger.getSeatNumber();
-//            }
-//        }
-//        return passengerSeat;
-//    }
+//    Assign seat number to random number
+    public int selectRandomSeatNumber(){
+        int randomIndex = new Random().nextInt(unassignedSeats.size());
+        return unassignedSeats.get(randomIndex);
+    }
+//    Assign RandomSeats To passengers
+    public void assignSeats(Passenger passenger){
+        int assignedSeats = selectRandomSeatNumber();
+        passenger.setSeatNumber(assignedSeats);
+        unassignedSeats.remove((Object)assignedSeats);
+    }
 
 }
