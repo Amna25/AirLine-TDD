@@ -11,27 +11,29 @@ import java.util.Date;
 
 public class Flight {
     private Pilot pilot;
-    private ArrayList<CabinCrewMember>cabinCrewMembers;
+    private ArrayList<String>cabinCrewMembers;
     private ArrayList<Passenger> passengers;
     private Plane plane;
-    private String flightNumber;
+    private String flightNo;
     private String destination;
     private String departureAirport;
     protected Date departureTime;
-    private String flightNo;
 
 
-    public Flight(Plane plane, String flightNumber, String
+
+    public Flight(Plane plane, String flightNo, String
             destination, String departureAirport){
         pilot = new Pilot("Bilal", Rank.CAPTION, "KER34");
         this.cabinCrewMembers = new ArrayList<>();
+        cabinCrewMembers.add("Ada");
+        cabinCrewMembers.add("Adam");
         this.passengers = new ArrayList<>();
         this.plane = plane;
-        this.flightNumber = flightNumber;
+        this.flightNo = flightNo;
         this.destination = destination;
         this.departureAirport = departureAirport;
         this.departureTime = new Date(2022,02,14);
-        this.flightNo = flightNo;
+
 
     }
     public int passengerCount(){
@@ -39,7 +41,7 @@ public class Flight {
     }
 
     public String getFlightNumber() {
-        return flightNumber;
+        return flightNo;
     }
 
     public String findDestination() {
@@ -63,7 +65,6 @@ public class Flight {
     public void bookPassenger(Passenger passenger){
         if(plane.getPlaneCapacity() > passengerCount()){
             this.passengers.add(passenger);
-            passenger.setFlightNo(flightNo);
         }
     }
 
@@ -74,4 +75,27 @@ public class Flight {
         }
        return null;
     }
+
+//    check flight ateendence size
+    public String CabinCrewRelayMessage(){
+        String result;
+        if(this.cabinCrewMembers.size() > 1){
+            result = "Welcome aboard to all passengers";
+        }else{
+            result = "Assign the cabin crew to flight first";
+        }
+        return result;
+    }
+
+//    seat Reserved for each passenger
+//    public int seatReservedForPassenger(Passenger passenger){
+//        int passengerSeat = 1;
+//        for(Passenger eachPassenger : passengers){
+//            if(eachPassenger.getName().equals(passenger.getName())) {
+//                passengerSeat = eachPassenger.getSeatNumber();
+//            }
+//        }
+//        return passengerSeat;
+//    }
+
 }

@@ -20,4 +20,6 @@ public enum Plane {
    public int getTotalWeight(){
        return totalWeight;
    }
+
+
 }

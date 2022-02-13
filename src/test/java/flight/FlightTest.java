@@ -2,9 +2,12 @@ package flight;
 
 import org.junit.Before;
 import org.junit.Test;
+import person.CabinCrewMember;
 import person.Passenger;
 import person.Plane;
+import person.Rank;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -27,11 +30,12 @@ public class FlightTest {
         flight.bookPassenger(passenger2);
         flight.bookPassenger(passenger3);
         flight.bookPassenger(passenger4);
+
     }
 
     @Test
     public void PassengerCount(){
-        assertEquals(4, flight.passengerCount());
+        assertEquals(3, flight.passengerCount());
     }
     @Test
     public void canHaveFlightNumber(){
@@ -56,15 +60,24 @@ public class FlightTest {
     public void canGetNumberOfSeatsSeats(){
         assertEquals(3, flight.getNumberOfSeats());
     }
+
     @Test
     public void canBookPassenger(){
         flight.bookPassenger(passenger);
-        assertEquals(5, flight.passengerCount());
+        assertEquals(3, flight.passengerCount());
     }
 
     @Test
     public void CannotBookPassenger(){
-        assertEquals("Cannot Book Passengers", flight.CannotBookPassenger());
 
+        assertEquals(null, flight.CannotBookPassenger());
     }
+
+    @Test
+    public void canRelayMessageToPassengers(){
+        assertEquals("Welcome aboard to all passengers", flight.CabinCrewRelayMessage());
+    }
+
+
+
 }

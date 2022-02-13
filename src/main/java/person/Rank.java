@@ -11,6 +11,7 @@ public enum Rank {
     }
 
     public String getRankValue(){
+
         return rankValue;
     }
 

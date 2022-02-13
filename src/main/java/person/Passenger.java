@@ -6,6 +6,7 @@ public class Passenger extends Person {
 
     private int numberOfBags;
     private String flightNo = null;
+    private int seatNumber;
 
 
 
@@ -13,8 +14,8 @@ public class Passenger extends Person {
         super(name);
         this.numberOfBags = numberOfBags;
         Random rand = new Random();
-//        this.seatNumber = rand.nextInt(10) + 1;
-//        Random seatNumber = (int)(Math.random() * 50);
+      this.seatNumber = rand.nextInt(10) + 1;
+
     }
 
     public int getNumberOfBags() {
@@ -27,5 +28,13 @@ public class Passenger extends Person {
 
     public void setFlightNo(String flightNo) {
         this.flightNo = flightNo;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
     }
 }

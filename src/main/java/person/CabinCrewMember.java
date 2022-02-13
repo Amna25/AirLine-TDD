@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class CabinCrewMember extends Person{
 
     private Rank rank;
+
     public CabinCrewMember(String name, Rank rank) {
         super(name);
         this.rank = rank;
@@ -15,10 +16,7 @@ public class CabinCrewMember extends Person{
     }
 
     public String rankValue(){
-        return this.rank.getRankValue();
+        return rank.getRankValue();
     }
 
-     public String deliverMessage(){
-        return "Fasten your seat belts";
-     }
 }

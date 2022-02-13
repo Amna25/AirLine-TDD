@@ -4,11 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import person.Rank;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 public class PilotTest {
     Pilot pilot;
+
     @Before
     public void before(){
         pilot = new Pilot("Bilal", Rank.CAPTION, "KER34");
@@ -28,14 +31,21 @@ public class PilotTest {
 
     @Test
     public void canFlyPlane(){
-        assertEquals("Can fly plane", pilot.isValidLicence());
-    }
-    @Test
-    public void cannotFlyPlane(){
-        pilot = new Pilot("Jack", Rank.CAPTION, null);
-        assertEquals("Can't fly plane",pilot.isValidLicence());
+        pilot.addPilot("RH");
+        pilot.addPilot("RH");
+        assertEquals("Plane ready to departure", pilot.flyPlane());
     }
 
+    @Test
+    public void canCountPilot(){
+        assertEquals(0,pilot.countFlyingCrew());
+    }
+
+    @Test
+    public void canAddPilot(){
+        pilot.addPilot("RH");
+        assertEquals(1,pilot.countFlyingCrew());
+    }
 
 
 }
