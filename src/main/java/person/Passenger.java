@@ -5,7 +5,7 @@ package person;
 public class Passenger extends Person {
 
     private int numberOfBags;
-    private String flightNo = null;
+    private String flightNo ;
     private int seatNumber;
 
 

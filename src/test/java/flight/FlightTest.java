@@ -8,8 +8,13 @@ import person.Plane;
 import person.Rank;
 
 import javax.swing.plaf.PanelUI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,26 +22,24 @@ import static org.junit.Assert.assertEquals;
 public class FlightTest {
     Flight flight;
     Passenger passenger;
-    Passenger passenger1;
-    Passenger passenger2;
-    Passenger passenger3;
-    Passenger passenger4;
+    DateTimeFormatter dateTimeFormatter;
+    LocalDateTime departureTime;
 
     @Before
     public void before(){
+
+        dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm dd-MMM-yyyy");
+        departureTime = LocalDateTime.parse("12:00 14-Feb-2022",dateTimeFormatter);
+
         flight = new Flight( Plane.AIRBUS, "FRE45", "Edinburgh"
-                , "Turkey");
+                , "Turkey", departureTime);
         passenger = new Passenger("Ron", 2);
-        flight.bookPassenger(passenger1);
-        flight.bookPassenger(passenger2);
-        flight.bookPassenger(passenger3);
-        flight.bookPassenger(passenger4 );
 
     }
 
     @Test
     public void PassengerCount(){
-        assertEquals(3, flight.passengerCount());
+        assertEquals(0, flight.passengerCount().size());
     }
     @Test
     public void canHaveFlightNumber(){
@@ -55,7 +58,7 @@ public class FlightTest {
 
     @Test
     public void hasDepartureTime(){
-        assertEquals(new Date(2022,02,14), flight.getDepartureTime());
+        assertEquals("2022-02-14T12:00" , flight.getDepartureTime().toString());
     }
     @Test
     public void canGetNumberOfSeatsSeats(){
@@ -66,24 +69,43 @@ public class FlightTest {
     @Test
     public void canGetUnassignedSeats(){
         assertEquals(3, flight.getUnassignedSeats().size());
+        assertEquals((Object) 1, flight.getUnassignedSeats().get(0));
     }
-    
+
     @Test
     public void canBookPassenger(){
-//        flight.bookPassenger(passenger);
-        assertEquals(3, flight.passengerCount());
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger);
+        assertEquals(3, flight.passengerCount().size());
     }
 
 
     @Test
     public void CannotBookPassenger(){
-
         assertEquals(null, flight.CannotBookPassenger());
     }
 
     @Test
     public void canRelayMessageToPassengers(){
         assertEquals("Welcome aboard to all passengers", flight.CabinCrewRelayMessage());
+    }
+
+    @Test
+    public void cannotBookSameSeatTwice(){
+//        book 30 passenger
+        for(int i = 0; i < 30; i++){
+            flight.bookPassenger(new Passenger("Amna",4));
+        }
+//        get their seat number
+        ArrayList<Integer>bookedSeatNumber = new ArrayList<Integer>();
+        for (Passenger passenger : flight.passengerCount()){
+            bookedSeatNumber.add(passenger.getSeatNumber());
+        }
+//        Convert that list into unique ArrayList
+        List<Integer> uniqueNumbers = bookedSeatNumber.stream().distinct().collect(Collectors.toList());
+//        check the length of these two lists are equal
+        assertEquals(uniqueNumbers.size(), bookedSeatNumber.size());
     }
 
 

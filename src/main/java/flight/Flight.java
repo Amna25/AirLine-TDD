@@ -6,6 +6,8 @@ import person.Plane;
 import person.Rank;
 import pilot.Pilot;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,12 +23,12 @@ public class Flight {
     private String flightNo;
     private String destination;
     private String departureAirport;
-    protected Date departureTime;
+    private LocalDateTime departureTime;
     private List<Integer> unassignedSeats;
 
 
     public Flight(Plane plane, String flightNo, String
-            destination, String departureAirport){
+            destination, String departureAirport, LocalDateTime departureTime){
         pilot = new Pilot("Bilal", Rank.CAPTION, "KER34");
         this.cabinCrewMembers = new ArrayList<>();
         cabinCrewMembers.add("Ada");
@@ -36,14 +38,14 @@ public class Flight {
         this.flightNo = flightNo;
         this.destination = destination;
         this.departureAirport = departureAirport;
-        this.departureTime = new Date(2022,02,14);
+        this.departureTime = departureTime;
 //        Create an array of unassigned seats from number 1 to max capacity of plane
         this.unassignedSeats = IntStream.rangeClosed(1, plane.getPlaneCapacity()).boxed().collect(Collectors.toList());
 
 
     }
-    public int passengerCount(){
-        return this.passengers.size();
+    public ArrayList<Passenger> passengerCount(){
+        return this.passengers;
     }
 
     public String getFlightNumber() {
@@ -58,7 +60,7 @@ public class Flight {
         return departureAirport;
     }
 
-    public Date getDepartureTime() {
+    public LocalDateTime getDepartureTime() {
         return departureTime;
     }
 
@@ -74,7 +76,7 @@ public class Flight {
 
 //  add passenger if there is any remaining seat
     public void bookPassenger(Passenger passenger){
-        if(plane.getPlaneCapacity() > passengerCount()){
+        if(plane.getPlaneCapacity() > 0){
             this.passengers.add(passenger);
             passenger.setFlightNo(flightNo);
             assignSeats(passenger);
@@ -84,7 +86,7 @@ public class Flight {
 
 //    Cannot book passengers
     public String CannotBookPassenger(){
-       if( plane.getPlaneCapacity() < passengerCount() ){
+       if( plane.getPlaneCapacity() < 0 ){
            return "Cannot Book Passengers";
         }
        return null;
